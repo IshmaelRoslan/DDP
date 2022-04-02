@@ -1,0 +1,67 @@
+---
+title: "Interesting Country Names"
+author: "Ishmael Roslan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, warning = FALSE,
+                      message = FALSE, echo = TRUE)
+```
+## Aim
+* To create an interactive map using leaflet
+* It will show which countries' names begin and end with the same letter.
+
+### Importing Data
+
+This [google dataset](https://developers.google.com/public-data/docs/canonical/countries_csv) was used.
+
+```{r import}
+library(tidyverse)
+
+countries <- read_csv("countries.csv") %>%
+        select(latitude:country)
+head(countries)
+```
+
+### Wrangling
+
+Create an indicator variable to show whic countries begin and end with the same letter.
+```{r wrangle}
+df <- countries %>%
+        complete() %>%
+        mutate(first = tolower(str_sub(country,1,1)),
+               last = str_sub(country,-1),
+               same = (first == last)) %>%
+        select(-(first:last)) %>%
+        rename(lat  = latitude,
+               lng = longitude)
+tail(df)
+```
+
+The code below shows how a color palette and map were generated.
+
+```{r generatemap}
+library(leaflet)
+sameCol <- colorFactor(palette = "RdYlGn", df$same)
+my_map <-
+        df %>%
+        leaflet() %>%
+        addTiles() %>%
+        addCircleMarkers(
+                   popup = ~country,
+                   color = ~sameCol(same),
+                   opacity = 0.8) %>%
+        addLegend("bottomright",
+                  pal = sameCol,
+                  values = ~same,
+                  title = "Does the country name begin and start with the same letter?")
+```
+
+Here is the interactive map.
+
+```{r showmap, echo = FALSE}
+my_map
+```
+

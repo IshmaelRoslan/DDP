@@ -1,2 +1,2 @@
 # DDP
- Develo[ing Data Products Coursera Project
+ Developing Data Products Coursera Project
