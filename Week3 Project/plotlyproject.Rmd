@@ -31,9 +31,13 @@ penguin_df <-
 
 ```{r plotcode, eval = FALSE}
 library(plotly)
-p <- ggplot(data = penguins, aes(x= bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species)) +
-  facet_wrap(island~sex)
+p <- ggplot(data = penguin_df, aes(x= bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape =  sex), alpha = 0.7) +
+  labs(title = "Classification of Penguins",
+       subtitle = "dataset: palmerpenguins",
+       x = "bill length (mm)",
+       y = "flipper length (mm)") +
+  theme_bw()
 ggplotly(p)
 ```
 

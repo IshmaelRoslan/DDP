@@ -5150,9 +5150,13 @@ penguin_df &lt;-
 </article></slide><slide class=""><hgroup><h2>Showing the Plotting Code Separately </h2><h3> to give the plot space</h3></hgroup><article  id="showing-the-plotting-code-separately-to-give-the-plot-space">
 
 <pre class = 'prettyprint lang-r'>library(plotly)
-p &lt;- ggplot(data = penguins, aes(x= bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species)) +
-  facet_wrap(island~sex)
+p &lt;- ggplot(data = penguin_df, aes(x= bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape =  sex), alpha = 0.7) +
+  labs(title = &quot;Classification of Penguins&quot;,
+       subtitle = &quot;dataset: palmerpenguins&quot;,
+       x = &quot;bill length (mm)&quot;,
+       y = &quot;flipper length (mm)&quot;) +
+  theme_bw()
 ggplotly(p)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Final Plot</h2></hgroup><article  id="final-plot">
