@@ -1,0 +1,56 @@
+---
+title: "Demonstrating plot_ly"
+author: "Ishmael Roslan"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    widescree: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, warning = FALSE,
+                      message = FALSE, echo = TRUE)
+```
+
+## Objective
+
+- Demonstrate plotting of an interactive graphic using plot_ly
+- Produce an Rmarkdown presentation (ioslides)
+
+## Loading Data and Libraries
+```{r libraries}
+library(palmerpenguins)
+library(tidyverse)
+data(penguins)
+penguin_df <- 
+  penguins %>%
+  drop_na(sex)
+```
+
+## Showing the Plotting Code Separately | to give the plot space
+
+```{r plotcode, eval = FALSE}
+library(plotly)
+p <- ggplot(data = penguins, aes(x= bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species)) +
+  facet_wrap(island~sex)
+ggplotly(p)
+```
+
+## Final Plot
+
+This suggests that `flipper_length_mm`, `bill_length`, `island` and `sex` should combine to make a good set of predictors of`species.
+
+```{r plot, echo = FALSE}
+library(plotly)
+p <- ggplot(data = penguin_df, aes(x= bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape =  sex), alpha = 0.7) +
+  labs(title = "Classification of Penguins",
+       subtitle = "dataset: palmerpenguins",
+       x = "bill length (mm)",
+       y = "flipper length (mm)") +
+  theme_bw()
+ggplotly(p)
+```
+
+

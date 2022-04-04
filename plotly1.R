@@ -3,12 +3,28 @@ data("mtcars")
 
 plot_ly(
         mtcars,
-        x = mtcars$wt,
-        y = mtcars$mpg,
+        x = ~wt,
+        y = ~mpg,
+        type="scatter",
         mode = "markers",
-        color = as.factor(mtcars$cyl),
-        size = mtcars$hp
+        color = ~as.factor(cyl),
+        size = mtcars$hp,
+        hoverinfo = "text",
+        text = ~paste("Weight: ", wt, "tons", "<br>Miles per Gallon: ", mpg)
 )
+
+#Alternatively
+p <- ggplot(aes(x = wt,
+                y = mpg,
+                color = as.factor(cyl),
+                text = paste("Weight: ", wt, "tons",
+                              "<br>Miles per Gallon: ", mpg,
+                              "<br>Cylinders: ", cyl)), data = mtcars) +
+        geom_point(alpha = 0.5) +
+        scale_color_discrete(name = "Cylinders") +
+        labs(x = "Weight (tons)",
+             y = "Fuel Economy (miles per gallon)")
+ggplotly(p)
 
 plot_ly(
         mtcars,
