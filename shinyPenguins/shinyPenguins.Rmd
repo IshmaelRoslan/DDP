@@ -1,0 +1,67 @@
+---
+title: "Developing Data Products - Week 4 Course Project"
+author: "Ishmael Roslan"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(palmerpenguins)
+library(tidyverse)
+```
+
+## Introduction
+
+The [palmerpenguins dataset](https://allisonhorst.github.io/palmerpenguins/) contains information
+on three different penguin species. I will create two predictive models (random forest and decision tree)
+to predict the species of a penguin based on input of the following variables;
+
+ - Island
+ - Bill Length
+ - Bill Depth
+ - Flipper Length
+ - Body Mass
+ - Sex
+ - Year
+
+## Looking at the Data
+
+There are 344 penguins mentioned in the data set, 11 of which have missing data, and will therefore
+be dropped from the dataset before creating models.
+
+```{r summary}
+summary(penguins)
+```
+
+## An interactive plot
+
+The plot below shows that even using 4 of the 7 predictors, good predictive models should be obtainable.
+
+```{r echo = FALSE}
+library(palmerpenguins)
+library(tidyverse)
+data(penguins)
+penguin_df <- 
+  penguins %>%
+  drop_na(sex)
+library(plotly)
+p <- ggplot(data = penguin_df, aes(x= bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape =  sex), alpha = 0.7) +
+  labs(title = "Classification of Penguins",
+       subtitle = "dataset: palmerpenguins",
+       x = "bill length (mm)",
+       y = "flipper length (mm)") +
+  theme_bw()
+ggplotly(p)
+```
+
+
+## Links
+
+ - full source code available at [Github](https://github.com/IshmaelRoslan/DDP/tree/main/shinyPenguins)
+
+ - fullscreen app available at [https://ishmaelroslan.shinyapps.io/shinyPenguins/](https://ishmaelroslan.shinyapps.io/shinyPenguins/)
+
+
+
