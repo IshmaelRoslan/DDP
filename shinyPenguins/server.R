@@ -10,6 +10,7 @@
 library(shiny)
 library(palmerpenguins)
 library(tidyverse)
+library(ranger)
 
 # Define server logic required to predict Species
 shinyServer(function(input, output) {

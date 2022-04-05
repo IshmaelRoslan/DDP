@@ -1,0 +1,13 @@
+name: shinyPenguins
+title: shinyPenguins
+username:
+account: ishmaelroslan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6008830
+bundleId: 5763411
+url: https://ishmaelroslan.shinyapps.io/shinyPenguins/
+when: 1649090535.83735
+lastSyncTime: 1649090535.83735
+asMultiple: FALSE
+asStatic: FALSE
