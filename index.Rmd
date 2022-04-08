@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output:
         rmdformats::downcute:
                 downcute_theme: chaos
-                df_print: kable
+                df_print: paged
                 code_folding: hide
 ---
 

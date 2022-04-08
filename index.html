@@ -1867,6 +1867,1277 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0},"string-i
 Prism.languages.r={comment:/#.*/,string:{pattern:/(['"])(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0},"percent-operator":{pattern:/%[^%\s]*%/,alias:"operator"},boolean:/\b(?:TRUE|FALSE)\b/,ellipsis:/\.\.(?:\.|\d+)/,number:[/\b(?:NaN|Inf)\b/,/(?:\b0x[\dA-Fa-f]+(?:\.\d*)?|\b\d+\.?\d*|\B\.\d+)(?:[EePp][+-]?\d+)?[iL]?/],keyword:/\b(?:if|else|repeat|while|function|for|in|next|break|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_)\b/,operator:/->?>?|<(?:=|<?-)?|[>=!]=?|::?|&&?|\|\|?|[+*\/^$@~]/,punctuation:/[(){}\[\],;]/};
 !function(e){var n=/[*&][^\s[\]{},]+/,t=/!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/,r="(?:"+t.source+"(?:[ \t]+"+n.source+")?|"+n.source+"(?:[ \t]+"+t.source+")?)",a="(?:[^\\s\\x00-\\x08\\x0e-\\x1f!\"#%&'*,\\-:>?@[\\]`{|}\\x7f-\\x84\\x86-\\x9f\\ud800-\\udfff\\ufffe\\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*".replace(/<PLAIN>/g,function(){return"[^\\s\\x00-\\x08\\x0e-\\x1f,[\\]{}\\x7f-\\x84\\x86-\\x9f\\ud800-\\udfff\\ufffe\\uffff]"}),d="\"(?:[^\"\\\\\r\n]|\\\\.)*\"|'(?:[^'\\\\\r\n]|\\\\.)*'";function o(e,n){n=(n||"").replace(/m/g,"")+"m";var t="([:\\-,[{]\\s*(?:\\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|]|}|\\s*#))".replace(/<<prop>>/g,function(){return r}).replace(/<<value>>/g,function(){return e});return RegExp(t,n)}e.languages.yaml={scalar:{pattern:RegExp("([\\-:]\\s*(?:\\s<<prop>>[ \t]+)?[|>])[ \t]*(?:((?:\r?\n|\r)[ \t]+)[^\r\n]+(?:\\2[^\r\n]+)*)".replace(/<<prop>>/g,function(){return r})),lookbehind:!0,alias:"string"},comment:/#.*/,key:{pattern:RegExp("((?:^|[:\\-,[{\r\n?])[ \t]*(?:<<prop>>[ \t]+)?)<<key>>(?=\\s*:\\s)".replace(/<<prop>>/g,function(){return r}).replace(/<<key>>/g,function(){return"(?:"+a+"|"+d+")"})),lookbehind:!0,greedy:!0,alias:"atrule"},directive:{pattern:/(^[ \t]*)%.+/m,lookbehind:!0,alias:"important"},datetime:{pattern:o("\\d{4}-\\d\\d?-\\d\\d?(?:[tT]|[ \t]+)\\d\\d?:\\d{2}:\\d{2}(?:\\.\\d*)?[ \t]*(?:Z|[-+]\\d\\d?(?::\\d{2})?)?|\\d{4}-\\d{2}-\\d{2}|\\d\\d?:\\d{2}(?::\\d{2}(?:\\.\\d*)?)?"),lookbehind:!0,alias:"number"},boolean:{pattern:o("true|false","i"),lookbehind:!0,alias:"important"},null:{pattern:o("null|~","i"),lookbehind:!0,alias:"important"},string:{pattern:o(d),lookbehind:!0,greedy:!0},number:{pattern:o("[+-]?(?:0x[\\da-f]+|0o[0-7]+|(?:\\d+\\.?\\d*|\\.?\\d+)(?:e[+-]?\\d+)?|\\.inf|\\.nan)","i"),lookbehind:!0},tag:t,important:n,punctuation:/---|[:[\]{}\-,|>?]|\.\.\./},e.languages.yml=e.languages.yaml}(Prism);
 </script>
+        <style type="text/css">.pagedtable {
+overflow: auto;
+padding-left: 8px;
+padding-right: 8px;
+}
+.pagedtable-wrapper {
+border: 1px solid #ccc;
+border-radius: 4px;
+margin-bottom: 10px;
+}
+.pagedtable table {
+width: 100%;
+max-width: 100%;
+margin: 0;
+}
+.pagedtable th {
+padding: 0 5px 0 5px;
+border: none;
+border-bottom: 2px solid #dddddd;
+min-width: 45px;
+}
+.pagedtable-empty th {
+display: none;
+}
+.pagedtable td {
+padding: 0 4px 0 4px;
+}
+.pagedtable .even {
+background-color: rgba(140, 140, 140, 0.1);
+}
+.pagedtable-padding-col {
+display: none;
+}
+.pagedtable a {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.pagedtable-index-nav {
+cursor: pointer;
+padding: 0 5px 0 5px;
+float: right;
+border: 0;
+}
+.pagedtable-index-nav-disabled {
+cursor: default;
+text-decoration: none;
+color: #999;
+}
+a.pagedtable-index-nav-disabled:hover {
+text-decoration: none;
+color: #999;
+}
+.pagedtable-indexes {
+cursor: pointer;
+float: right;
+border: 0;
+}
+.pagedtable-index-current {
+cursor: default;
+text-decoration: none;
+font-weight: bold;
+color: #333;
+border: 0;
+}
+a.pagedtable-index-current:hover {
+text-decoration: none;
+font-weight: bold;
+color: #333;
+}
+.pagedtable-index {
+width: 30px;
+display: inline-block;
+text-align: center;
+border: 0;
+}
+.pagedtable-index-separator-left {
+display: inline-block;
+color: #333;
+font-size: 9px;
+padding: 0 0 0 0;
+cursor: default;
+}
+.pagedtable-index-separator-right {
+display: inline-block;
+color: #333;
+font-size: 9px;
+padding: 0 4px 0 0;
+cursor: default;
+}
+.pagedtable-footer {
+padding-top: 4px;
+padding-bottom: 5px;
+}
+.pagedtable-not-empty .pagedtable-footer {
+border-top: 2px solid #dddddd;
+}
+.pagedtable-info {
+overflow: hidden;
+color: #999;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.pagedtable-header-name {
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.pagedtable-header-type {
+color: #999;
+font-weight: 400;
+}
+.pagedtable-na-cell {
+font-style: italic;
+opacity: 0.3;
+}
+</style>
+        <script>// Production steps of ECMA-262, Edition 5, 15.4.4.18
+// Reference: http://es5.github.io/#x15.4.4.18
+if (!Array.prototype.forEach) {
+
+  Array.prototype.forEach = function(callback, thisArg) {
+
+    var T, k;
+
+    if (this === null) {
+      throw new TypeError(' this is null or not defined');
+    }
+
+    // 1. Let O be the result of calling toObject() passing the
+    // |this| value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get() internal
+    // method of O with the argument "length".
+    // 3. Let len be toUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If isCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + ' is not a function');
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let
+    // T be undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Let k be 0
+    k = 0;
+
+    // 7. Repeat, while k < len
+    while (k < len) {
+
+      var kValue;
+
+      // a. Let Pk be ToString(k).
+      //    This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty
+      //    internal method of O with argument Pk.
+      //    This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal
+        // method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Call the Call internal method of callback with T as
+        // the this value and argument list containing kValue, k, and O.
+        callback.call(T, kValue, k, O);
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+    // 8. return undefined
+  };
+}
+
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.io/#x15.4.4.19
+if (!Array.prototype.map) {
+
+  Array.prototype.map = function(callback, thisArg) {
+
+    var T, A, k;
+
+    if (this == null) {
+      throw new TypeError(' this is null or not defined');
+    }
+
+    // 1. Let O be the result of calling ToObject passing the |this|
+    //    value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get internal
+    //    method of O with the argument "length".
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== 'function') {
+      throw new TypeError(callback + ' is not a function');
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Let A be a new array created as if by the expression new Array(len)
+    //    where Array is the standard built-in constructor with that name and
+    //    len is the value of len.
+    A = new Array(len);
+
+    // 7. Let k be 0
+    k = 0;
+
+    // 8. Repeat, while k < len
+    while (k < len) {
+
+      var kValue, mappedValue;
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal
+      //    method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal
+        //    method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Let mappedValue be the result of calling the Call internal
+        //     method of callback with T as the this value and argument
+        //     list containing kValue, k, and O.
+        mappedValue = callback.call(T, kValue, k, O);
+
+        // iii. Call the DefineOwnProperty internal method of A with arguments
+        // Pk, Property Descriptor
+        // { Value: mappedValue,
+        //   Writable: true,
+        //   Enumerable: true,
+        //   Configurable: true },
+        // and false.
+
+        // In browsers that support Object.defineProperty, use the following:
+        // Object.defineProperty(A, k, {
+        //   value: mappedValue,
+        //   writable: true,
+        //   enumerable: true,
+        //   configurable: true
+        // });
+
+        // For best browser support, use the following:
+        A[k] = mappedValue;
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+
+    // 9. return A
+    return A;
+  };
+}
+
+var PagedTable = function (pagedTable) {
+  var me = this;
+
+  var source = function(pagedTable) {
+    var sourceElems = [].slice.call(pagedTable.children).filter(function(e) {
+      return e.hasAttribute("data-pagedtable-source");
+    });
+
+    if (sourceElems === null || sourceElems.length !== 1) {
+      throw("A single data-pagedtable-source was not found");
+    }
+
+    return JSON.parse(sourceElems[0].innerHTML);
+  }(pagedTable);
+
+  var options = function(source) {
+    var options = typeof(source.options) !== "undefined" &&
+      source.options !== null ? source.options : {};
+
+    var columns = typeof(options.columns) !== "undefined" ? options.columns : {};
+    var rows = typeof(options.rows) !== "undefined" ? options.rows : {};
+
+    var positiveIntOrNull = function(value) {
+      return parseInt(value) >= 0 ? parseInt(value) : null;
+    };
+
+    return {
+      pages: positiveIntOrNull(options.pages),
+      rows: {
+        min: positiveIntOrNull(rows.min),
+        max: positiveIntOrNull(rows.max),
+        total: positiveIntOrNull(rows.total)
+      },
+      columns: {
+        min: positiveIntOrNull(columns.min),
+        max: positiveIntOrNull(columns.max),
+        total: positiveIntOrNull(columns.total)
+      }
+    };
+  }(source);
+
+  var Measurer = function() {
+
+    // set some default initial values that will get adjusted in runtime
+    me.measures = {
+      padding: 12,
+      character: 8,
+      height: 15,
+      defaults: true
+    };
+
+    me.calculate = function(measuresCell) {
+      if (!me.measures.defaults)
+        return;
+
+      var measuresCellStyle = window.getComputedStyle(measuresCell, null);
+
+      var newPadding = parsePadding(measuresCellStyle.paddingLeft) +
+            parsePadding(measuresCellStyle.paddingRight);
+
+      var sampleString = "ABCDEFGHIJ0123456789";
+      var newCharacter = Math.ceil(measuresCell.clientWidth / sampleString.length);
+
+      if (newPadding <= 0 || newCharacter <= 0)
+        return;
+
+      me.measures.padding = newPadding;
+      me.measures.character = newCharacter;
+      me.measures.height = measuresCell.clientHeight;
+      me.measures.defaults = false;
+    };
+
+    return me;
+  };
+
+  var Page = function(data, options) {
+    var me = this;
+
+    var defaults = {
+      max: 7,
+      rows: 10
+    };
+
+    var totalPages = function() {
+      return Math.ceil(data.length / me.rows);
+    };
+
+    me.number = 0;
+    me.max = options.pages !== null ? options.pages : defaults.max;
+    me.visible = me.max;
+    me.rows = options.rows.min !== null ? options.rows.min : defaults.rows;
+    me.total = totalPages();
+
+    me.setRows = function(newRows) {
+      me.rows = newRows;
+      me.total = totalPages();
+    };
+
+    me.setPageNumber = function(newPageNumber) {
+      if (newPageNumber < 0) newPageNumber = 0;
+      if (newPageNumber >= me.total) newPageNumber = me.total - 1;
+
+      me.number = newPageNumber;
+    };
+
+    me.setVisiblePages = function(visiblePages) {
+      me.visible = Math.min(me.max, visiblePages);
+      me.setPageNumber(me.number);
+    };
+
+    me.getVisiblePageRange = function() {
+      var start = me.number - Math.max(Math.floor((me.visible - 1) / 2), 0);
+      var end = me.number + Math.floor(me.visible / 2) + 1;
+      var pageCount = me.total;
+
+      if (start < 0) {
+        var diffToStart = 0 - start;
+        start += diffToStart;
+        end += diffToStart;
+      }
+
+      if (end > pageCount) {
+        var diffToEnd = end - pageCount;
+        start -= diffToEnd;
+        end -= diffToEnd;
+      }
+
+      start = start < 0 ? 0 : start;
+      end = end >= pageCount ? pageCount : end;
+
+      var first = false;
+      var last = false;
+
+      if (start > 0 && me.visible > 1) {
+        start = start + 1;
+        first = true;
+      }
+
+      if (end < pageCount && me.visible > 2) {
+        end = end - 1;
+        last = true;
+      }
+
+      return {
+        first: first,
+        start: start,
+        end: end,
+        last: last
+      };
+    };
+
+    me.getRowStart = function() {
+      var rowStart = page.number * page.rows;
+      if (rowStart < 0)
+        rowStart = 0;
+
+      return rowStart;
+    };
+
+    me.getRowEnd = function() {
+      var rowStart = me.getRowStart();
+      return Math.min(rowStart + me.rows, data.length);
+    };
+
+    me.getPaddingRows = function() {
+      var rowStart = me.getRowStart();
+      var rowEnd = me.getRowEnd();
+      return data.length > me.rows ? me.rows - (rowEnd - rowStart) : 0;
+    };
+  };
+
+  var Columns = function(data, columns, options) {
+    var me = this;
+
+    me.defaults = {
+      min: 5
+    };
+
+    me.number = 0;
+    me.visible = 0;
+    me.total = columns.length;
+    me.subset = [];
+    me.padding = 0;
+    me.min = options.columns.min !== null ? options.columns.min : me.defaults.min;
+    me.max = options.columns.max !== null ? options.columns.max : null;
+    me.widths = {};
+
+    var widthsLookAhead = Math.max(100, options.rows.min);
+    var paddingColChars = 10;
+
+    me.emptyNames = function() {
+      columns.forEach(function(column) {
+        if (columns.label !== null && columns.label !== "")
+          return false;
+      });
+
+      return true;
+    };
+
+    var parsePadding = function(value) {
+      return parseInt(value) >= 0 ? parseInt(value) : 0;
+    };
+
+    me.calculateWidths = function(measures) {
+      columns.forEach(function(column) {
+        var maxChars = Math.max(
+          column.label.toString().length,
+          column.type.toString().length
+        );
+
+        for (var idxRow = 0; idxRow < Math.min(widthsLookAhead, data.length); idxRow++) {
+          maxChars = Math.max(maxChars, data[idxRow][column.name.toString()].length);
+        }
+
+        me.widths[column.name] = {
+          // width in characters
+          chars: maxChars,
+          // width for the inner html columns
+          inner: maxChars * measures.character,
+          // width adding outer styles like padding
+          outer: maxChars * measures.character + measures.padding
+        };
+      });
+    };
+
+    me.getWidth = function() {
+      var widthOuter = 0;
+      for (var idxCol = 0; idxCol < me.subset.length; idxCol++) {
+        var columnName = me.subset[idxCol].name;
+        widthOuter = widthOuter + me.widths[columnName].outer;
+      }
+
+      widthOuter = widthOuter + me.padding * paddingColChars * measurer.measures.character;
+
+      if (me.hasMoreLeftColumns()) {
+        widthOuter = widthOuter + columnNavigationWidthPX + measurer.measures.padding;
+      }
+
+      if (me.hasMoreRightColumns()) {
+        widthOuter = widthOuter + columnNavigationWidthPX + measurer.measures.padding;
+      }
+
+      return widthOuter;
+    };
+
+    me.updateSlice = function() {
+      if (me.number + me.visible >= me.total)
+        me.number = me.total - me.visible;
+
+      if (me.number < 0) me.number = 0;
+
+      me.subset = columns.slice(me.number, Math.min(me.number + me.visible, me.total));
+
+      me.subset = me.subset.map(function(column) {
+        Object.keys(column).forEach(function(colKey) {
+          column[colKey] = column[colKey] === null ? "" : column[colKey].toString();
+        });
+
+        column.width = null;
+        return column;
+      });
+    };
+
+    me.setVisibleColumns = function(columnNumber, newVisibleColumns, paddingCount) {
+      me.number = columnNumber;
+      me.visible = newVisibleColumns;
+      me.padding = paddingCount;
+
+      me.updateSlice();
+    };
+
+    me.incColumnNumber = function(increment) {
+      me.number = me.number + increment;
+    };
+
+    me.setColumnNumber = function(newNumber) {
+      me.number = newNumber;
+    };
+
+    me.setPaddingCount = function(newPadding) {
+      me.padding = newPadding;
+    };
+
+    me.getPaddingCount = function() {
+      return me.padding;
+    };
+
+    me.hasMoreLeftColumns = function() {
+      return me.number > 0;
+    };
+
+    me.hasMoreRightColumns = function() {
+      return me.number + me.visible < me.total;
+    };
+
+    me.updateSlice(0);
+    return me;
+  };
+
+  var data = source.data;
+  var page = new Page(data, options);
+  var measurer = new Measurer(data, options);
+  var columns = new Columns(data, source.columns, options);
+
+  var table = null;
+  var tableDiv = null;
+  var header = null;
+  var footer = null;
+  var tbody = null;
+
+  // Caches pagedTable.clientWidth, specially for webkit
+  var cachedPagedTableClientWidth = null;
+
+  var onChangeCallbacks = [];
+
+  var clearSelection = function() {
+    if(document.selection && document.selection.empty) {
+      document.selection.empty();
+    } else if(window.getSelection) {
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+    }
+  };
+
+  var columnNavigationWidthPX = 5;
+
+  var renderColumnNavigation = function(increment, backwards) {
+    var arrow = document.createElement("div");
+    arrow.setAttribute("style",
+      "border-top: " + columnNavigationWidthPX + "px solid transparent;" +
+      "border-bottom: " + columnNavigationWidthPX + "px solid transparent;" +
+      "border-" + (backwards ? "right" : "left") + ": " + columnNavigationWidthPX + "px solid;");
+
+    var header = document.createElement("th");
+    header.appendChild(arrow);
+    header.setAttribute("style",
+      "cursor: pointer;" +
+      "vertical-align: middle;" +
+      "min-width: " + columnNavigationWidthPX + "px;" +
+      "width: " + columnNavigationWidthPX + "px;");
+
+    header.onclick = function() {
+      columns.incColumnNumber(backwards ? -1 : increment);
+
+      me.animateColumns(backwards);
+      renderFooter();
+
+      clearSelection();
+      triggerOnChange();
+    };
+
+    return header;
+  };
+
+  var maxColumnWidth = function(width) {
+    var padding = 80;
+    var columnMax = Math.max(cachedPagedTableClientWidth - padding, 0);
+
+    return parseInt(width) > 0 ?
+      Math.min(columnMax, parseInt(width)) + "px" :
+      columnMax + "px";
+  };
+
+  var clearHeader = function() {
+    var thead = pagedTable.querySelectorAll("thead")[0];
+    thead.innerHTML = "";
+  };
+
+  var renderHeader = function(clear) {
+    cachedPagedTableClientWidth = pagedTable.clientWidth;
+
+    var fragment = document.createDocumentFragment();
+
+    header = document.createElement("tr");
+    fragment.appendChild(header);
+
+    if (columns.number > 0)
+      header.appendChild(renderColumnNavigation(-columns.visible, true));
+
+    columns.subset = columns.subset.map(function(columnData) {
+      var column = document.createElement("th");
+      column.setAttribute("align", columnData.align);
+      column.style.textAlign = columnData.align;
+
+      column.style.maxWidth = maxColumnWidth(null);
+      if (columnData.width) {
+        column.style.minWidth =
+          column.style.maxWidth = maxColumnWidth(columnData.width);
+      }
+
+      var columnName = document.createElement("div");
+      columnName.setAttribute("class", "pagedtable-header-name");
+      if (columnData.label === "") {
+        columnName.innerHTML = "&nbsp;";
+      }
+      else {
+        columnName.appendChild(document.createTextNode(columnData.label));
+      }
+      column.appendChild(columnName);
+
+      var columnType = document.createElement("div");
+      columnType.setAttribute("class", "pagedtable-header-type");
+      if (columnData.type === "") {
+        columnType.innerHTML = "&nbsp;";
+      }
+      else {
+        columnType.appendChild(document.createTextNode("<" + columnData.type + ">"));
+      }
+      column.appendChild(columnType);
+
+      header.appendChild(column);
+
+      columnData.element = column;
+
+      return columnData;
+    });
+
+    for (var idx = 0; idx < columns.getPaddingCount(); idx++) {
+      var paddingCol = document.createElement("th");
+      paddingCol.setAttribute("class", "pagedtable-padding-col");
+      header.appendChild(paddingCol);
+    }
+
+    if (columns.number + columns.visible < columns.total)
+      header.appendChild(renderColumnNavigation(columns.visible, false));
+
+    if (typeof(clear) == "undefined" || clear) clearHeader();
+    var thead = pagedTable.querySelectorAll("thead")[0];
+    thead.appendChild(fragment);
+  };
+
+  me.animateColumns = function(backwards) {
+    var thead = pagedTable.querySelectorAll("thead")[0];
+
+    var headerOld = thead.querySelectorAll("tr")[0];
+    var tbodyOld = table.querySelectorAll("tbody")[0];
+
+    me.fitColumns(backwards);
+
+    renderHeader(false);
+
+    header.style.opacity = "0";
+    header.style.transform = backwards ? "translateX(-30px)" : "translateX(30px)";
+    header.style.transition = "transform 200ms linear, opacity 200ms";
+    header.style.transitionDelay = "0";
+
+    renderBody(false);
+
+    if (headerOld) {
+      headerOld.style.position = "absolute";
+      headerOld.style.transform = "translateX(0px)";
+      headerOld.style.opacity = "1";
+      headerOld.style.transition = "transform 100ms linear, opacity 100ms";
+      headerOld.setAttribute("class", "pagedtable-remove-head");
+      if (headerOld.style.transitionEnd) {
+        headerOld.addEventListener("transitionend", function() {
+          var headerOldByClass = thead.querySelector(".pagedtable-remove-head");
+          if (headerOldByClass) thead.removeChild(headerOldByClass);
+        });
+      }
+      else {
+        thead.removeChild(headerOld);
+      }
+    }
+
+    if (tbodyOld) table.removeChild(tbodyOld);
+
+    tbody.style.opacity = "0";
+    tbody.style.transition = "transform 200ms linear, opacity 200ms";
+    tbody.style.transitionDelay = "0ms";
+
+    // force relayout
+    window.getComputedStyle(header).opacity;
+    window.getComputedStyle(tbody).opacity;
+
+    if (headerOld) {
+      headerOld.style.transform = backwards ? "translateX(20px)" : "translateX(-30px)";
+      headerOld.style.opacity = "0";
+    }
+
+    header.style.transform = "translateX(0px)";
+    header.style.opacity = "1";
+
+    tbody.style.opacity = "1";
+  }
+
+  me.onChange = function(callback) {
+    onChangeCallbacks.push(callback);
+  };
+
+  var triggerOnChange = function() {
+    onChangeCallbacks.forEach(function(onChange) {
+      onChange();
+    });
+  };
+
+  var clearBody = function() {
+    if (tbody) {
+      table.removeChild(tbody);
+      tbody = null;
+    }
+  };
+
+  var renderBody = function(clear) {
+    cachedPagedTableClientWidth = pagedTable.clientWidth
+
+    var fragment = document.createDocumentFragment();
+
+    var pageData = data.slice(page.getRowStart(), page.getRowEnd());
+
+    pageData.forEach(function(dataRow, idxRow) {
+      var htmlRow = document.createElement("tr");
+      htmlRow.setAttribute("class", (idxRow % 2 !==0) ? "even" : "odd");
+
+      if (columns.hasMoreLeftColumns())
+        htmlRow.appendChild(document.createElement("td"));
+
+      columns.subset.forEach(function(columnData) {
+        var cellName = columnData.name;
+        var dataCell = dataRow[cellName];
+        var htmlCell = document.createElement("td");
+
+        if (dataCell === "NA") htmlCell.setAttribute("class", "pagedtable-na-cell");
+        if (dataCell === "__NA__") dataCell = "NA";
+
+        var cellText = document.createTextNode(dataCell);
+        htmlCell.appendChild(cellText);
+        if (dataCell.length > 50) {
+          htmlCell.setAttribute("title", dataCell);
+        }
+        htmlCell.setAttribute("align", columnData.align);
+        htmlCell.style.textAlign = columnData.align;
+        htmlCell.style.maxWidth = maxColumnWidth(null);
+        if (columnData.width) {
+          htmlCell.style.minWidth = htmlCell.style.maxWidth = maxColumnWidth(columnData.width);
+        }
+        htmlRow.appendChild(htmlCell);
+      });
+
+      for (var idx = 0; idx < columns.getPaddingCount(); idx++) {
+        var paddingCol = document.createElement("td");
+        paddingCol.setAttribute("class", "pagedtable-padding-col");
+        htmlRow.appendChild(paddingCol);
+      }
+
+      if (columns.hasMoreRightColumns())
+        htmlRow.appendChild(document.createElement("td"));
+
+      fragment.appendChild(htmlRow);
+    });
+
+    for (var idxPadding = 0; idxPadding < page.getPaddingRows(); idxPadding++) {
+      var paddingRow = document.createElement("tr");
+
+      var paddingCellRow = document.createElement("td");
+      paddingCellRow.innerHTML = "&nbsp;";
+      paddingCellRow.setAttribute("colspan", "100%");
+      paddingRow.appendChild(paddingCellRow);
+
+      fragment.appendChild(paddingRow);
+    }
+
+    if (typeof(clear) == "undefined" || clear) clearBody();
+    tbody = document.createElement("tbody");
+    tbody.appendChild(fragment);
+
+    table.appendChild(tbody);
+  };
+
+  var getLabelInfo = function() {
+    var pageStart = page.getRowStart();
+    var pageEnd = page.getRowEnd();
+    var totalRows = data.length;
+
+    var totalRowsLabel = options.rows.total ? options.rows.total : totalRows;
+    var totalRowsLabelFormat = totalRowsLabel.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+
+    var infoText = (pageStart + 1) + "-" + pageEnd + " of " + totalRowsLabelFormat + " rows";
+    if (totalRows < page.rows) {
+      infoText = totalRowsLabel + " row" + (totalRows != 1 ? "s" : "");
+    }
+    if (columns.total > columns.visible) {
+      var totalColumnsLabel = options.columns.total ? options.columns.total : columns.total;
+
+      infoText = infoText + " | " + (columns.number + 1) + "-" +
+        (Math.min(columns.number + columns.visible, columns.total)) +
+        " of " + totalColumnsLabel + " columns";
+    }
+
+    return infoText;
+  };
+
+  var clearFooter = function() {
+    footer = pagedTable.querySelectorAll("div.pagedtable-footer")[0];
+    footer.innerHTML = "";
+
+    return footer;
+  };
+
+  var createPageLink = function(idxPage) {
+    var pageLink = document.createElement("a");
+    pageLinkClass = idxPage === page.number ? "pagedtable-index pagedtable-index-current" : "pagedtable-index";
+    pageLink.setAttribute("class", pageLinkClass);
+    pageLink.setAttribute("data-page-index", idxPage);
+    pageLink.onclick = function() {
+      page.setPageNumber(parseInt(this.getAttribute("data-page-index")));
+      renderBody();
+      renderFooter();
+
+      triggerOnChange();
+    };
+
+    pageLink.appendChild(document.createTextNode(idxPage + 1));
+
+    return pageLink;
+  }
+
+  var renderFooter = function() {
+    footer = clearFooter();
+
+    var next = document.createElement("a");
+    next.appendChild(document.createTextNode("Next"));
+    next.onclick = function() {
+      page.setPageNumber(page.number + 1);
+      renderBody();
+      renderFooter();
+
+      triggerOnChange();
+    };
+    if (data.length > page.rows) footer.appendChild(next);
+
+    var pageNumbers = document.createElement("div");
+    pageNumbers.setAttribute("class", "pagedtable-indexes");
+
+    var pageRange = page.getVisiblePageRange();
+
+    if (pageRange.first) {
+      var pageLink = createPageLink(0);
+      pageNumbers.appendChild(pageLink);
+
+      var pageSeparator = document.createElement("div");
+      pageSeparator.setAttribute("class", "pagedtable-index-separator-left");
+      pageSeparator.appendChild(document.createTextNode("..."))
+      pageNumbers.appendChild(pageSeparator);
+    }
+
+    for (var idxPage = pageRange.start; idxPage < pageRange.end; idxPage++) {
+      var pageLink = createPageLink(idxPage);
+
+      pageNumbers.appendChild(pageLink);
+    }
+
+    if (pageRange.last) {
+      var pageSeparator = document.createElement("div");
+      pageSeparator.setAttribute("class", "pagedtable-index-separator-right");
+      pageSeparator.appendChild(document.createTextNode("..."))
+      pageNumbers.appendChild(pageSeparator);
+
+      var pageLink = createPageLink(page.total - 1);
+      pageNumbers.appendChild(pageLink);
+    }
+
+    if (data.length > page.rows) footer.appendChild(pageNumbers);
+
+    var previous = document.createElement("a");
+    previous.appendChild(document.createTextNode("Previous"));
+    previous.onclick = function() {
+      page.setPageNumber(page.number - 1);
+      renderBody();
+      renderFooter();
+
+      triggerOnChange();
+    };
+    if (data.length > page.rows) footer.appendChild(previous);
+
+    var infoLabel = document.createElement("div");
+    infoLabel.setAttribute("class", "pagedtable-info");
+    infoLabel.setAttribute("title", getLabelInfo());
+    infoLabel.appendChild(document.createTextNode(getLabelInfo()));
+    footer.appendChild(infoLabel);
+
+    var enabledClass = "pagedtable-index-nav";
+    var disabledClass = "pagedtable-index-nav pagedtable-index-nav-disabled";
+    previous.setAttribute("class", page.number <= 0 ? disabledClass : enabledClass);
+    next.setAttribute("class", (page.number + 1) * page.rows >= data.length ? disabledClass : enabledClass);
+  };
+
+  var measuresCell = null;
+
+  var renderMeasures = function() {
+    var measuresTable = document.createElement("table");
+    measuresTable.style.visibility = "hidden";
+    measuresTable.style.position = "absolute";
+    measuresTable.style.whiteSpace = "nowrap";
+    measuresTable.style.height = "auto";
+    measuresTable.style.width = "auto";
+
+    var measuresRow = document.createElement("tr");
+    measuresTable.appendChild(measuresRow);
+
+    measuresCell = document.createElement("td");
+    var sampleString = "ABCDEFGHIJ0123456789";
+    measuresCell.appendChild(document.createTextNode(sampleString));
+
+    measuresRow.appendChild(measuresCell);
+
+    tableDiv.appendChild(measuresTable);
+  }
+
+  me.init = function() {
+    tableDiv = document.createElement("div");
+    pagedTable.appendChild(tableDiv);
+    var pagedTableClass = data.length > 0 ?
+      "pagedtable pagedtable-not-empty" :
+      "pagedtable pagedtable-empty";
+
+    if (columns.total == 0 || (columns.emptyNames() && data.length == 0)) {
+      pagedTableClass = pagedTableClass + " pagedtable-empty-columns";
+    }
+
+    tableDiv.setAttribute("class", pagedTableClass);
+
+    renderMeasures();
+    measurer.calculate(measuresCell);
+    columns.calculateWidths(measurer.measures);
+
+    table = document.createElement("table");
+    table.setAttribute("cellspacing", "0");
+    table.setAttribute("class", "table table-condensed");
+    tableDiv.appendChild(table);
+
+    table.appendChild(document.createElement("thead"));
+
+    var footerDiv = document.createElement("div");
+    footerDiv.setAttribute("class", "pagedtable-footer");
+    tableDiv.appendChild(footerDiv);
+
+    // if the host has not yet provided horizontal space, render hidden
+    if (tableDiv.clientWidth <= 0) {
+      tableDiv.style.opacity = "0";
+    }
+
+    me.render();
+
+    // retry seizing columns later if the host has not provided space
+    function retryFit() {
+      if (tableDiv.clientWidth <= 0) {
+        setTimeout(retryFit, 100);
+      } else {
+        me.render();
+        triggerOnChange();
+      }
+    }
+    if (tableDiv.clientWidth <= 0) {
+      retryFit();
+    }
+  };
+
+  var registerWidths = function() {
+    columns.subset = columns.subset.map(function(column) {
+      column.width = columns.widths[column.name].inner;
+      return column;
+    });
+  };
+
+  var parsePadding = function(value) {
+    return parseInt(value) >= 0 ? parseInt(value) : 0;
+  };
+
+  me.fixedHeight = function() {
+    return options.rows.max != null;
+  }
+
+  me.fitRows = function() {
+    if (me.fixedHeight())
+      return;
+
+    measurer.calculate(measuresCell);
+
+    var rows = options.rows.min !== null ? options.rows.min : 0;
+    var headerHeight = header !== null && header.offsetHeight > 0 ? header.offsetHeight : 0;
+    var footerHeight = footer !== null && footer.offsetHeight > 0 ? footer.offsetHeight : 0;
+
+    if (pagedTable.offsetHeight > 0) {
+      var availableHeight = pagedTable.offsetHeight - headerHeight - footerHeight;
+      rows = Math.floor((availableHeight) / measurer.measures.height);
+    }
+
+    rows = options.rows.min !== null ? Math.max(options.rows.min, rows) : rows;
+
+    page.setRows(rows);
+  }
+
+  // The goal of this function is to add as many columns as possible
+  // starting from left-to-right, when the right most limit is reached
+  // it tries to add columns from the left as well.
+  //
+  // When startBackwards is true columns are added from right-to-left
+  me.fitColumns = function(startBackwards) {
+    measurer.calculate(measuresCell);
+    columns.calculateWidths(measurer.measures);
+
+    if (tableDiv.clientWidth > 0) {
+      tableDiv.style.opacity = 1;
+    }
+
+    var visibleColumns = tableDiv.clientWidth <= 0 ? Math.max(columns.min, 1) : 1;
+    var columnNumber = columns.number;
+    var paddingCount = 0;
+
+    // track a list of added columns as we build the visible ones to allow us
+    // to remove columns when they don't fit anymore.
+    var columnHistory = [];
+
+    var lastTableHeight = 0;
+    var backwards = startBackwards;
+
+    var tableDivStyle = window.getComputedStyle(tableDiv, null);
+    var tableDivPadding = parsePadding(tableDivStyle.paddingLeft) +
+      parsePadding(tableDivStyle.paddingRight);
+
+    var addPaddingCol = false;
+    var currentWidth = 0;
+
+    while (true) {
+      columns.setVisibleColumns(columnNumber, visibleColumns, paddingCount);
+      currentWidth = columns.getWidth();
+
+      if (tableDiv.clientWidth - tableDivPadding < currentWidth) {
+        break;
+      }
+
+      columnHistory.push({
+        columnNumber: columnNumber,
+        visibleColumns: visibleColumns,
+        paddingCount: paddingCount
+      });
+
+      if (columnHistory.length > 100) {
+        console.error("More than 100 tries to fit columns, aborting");
+        break;
+      }
+
+      if (columns.max !== null &&
+        columns.visible + columns.getPaddingCount() >= columns.max) {
+        break;
+      }
+
+      // if we run out of right-columns
+      if (!backwards && columnNumber + columns.visible >= columns.total) {
+        // if we started adding right-columns, try adding left-columns
+        if (!startBackwards && columnNumber > 0) {
+          backwards = true;
+        }
+        else if (columns.min === null || visibleColumns + columns.getPaddingCount() >= columns.min) {
+          break;
+        }
+        else {
+          paddingCount = paddingCount + 1;
+        }
+      }
+
+      // if we run out of left-columns
+      if (backwards && columnNumber == 0) {
+        // if we started adding left-columns, try adding right-columns
+        if (startBackwards && columnNumber + columns.visible < columns.total) {
+          backwards = false;
+        }
+        else if (columns.min === null || visibleColumns + columns.getPaddingCount() >= columns.min) {
+          break;
+        }
+        else {
+          paddingCount = paddingCount + 1;
+        }
+      }
+
+      // when moving backwards try fitting left columns first
+      if (backwards && columnNumber > 0) {
+        columnNumber = columnNumber - 1;
+      }
+
+      if (columnNumber + visibleColumns < columns.total) {
+        visibleColumns = visibleColumns + 1;
+      }
+    }
+
+    var lastRenderableColumn = {
+        columnNumber: columnNumber,
+        visibleColumns: visibleColumns,
+        paddingCount: paddingCount
+    };
+
+    if (columnHistory.length > 0) {
+      lastRenderableColumn = columnHistory[columnHistory.length - 1];
+    }
+
+    columns.setVisibleColumns(
+      lastRenderableColumn.columnNumber,
+      lastRenderableColumn.visibleColumns,
+      lastRenderableColumn.paddingCount);
+
+    if (pagedTable.offsetWidth > 0) {
+      page.setVisiblePages(Math.max(Math.ceil(1.0 * (pagedTable.offsetWidth - 250) / 40), 2));
+    }
+
+    registerWidths();
+  };
+
+  me.fit = function(startBackwards) {
+    me.fitRows();
+    me.fitColumns(startBackwards);
+  }
+
+  me.render = function() {
+    me.fitColumns(false);
+
+    // render header/footer to measure height accurately
+    renderHeader();
+    renderFooter();
+
+    me.fitRows();
+    renderBody();
+
+    // re-render footer to match new rows
+    renderFooter();
+  }
+
+  var resizeLastWidth = -1;
+  var resizeLastHeight = -1;
+  var resizeNewWidth = -1;
+  var resizeNewHeight = -1;
+  var resizePending = false;
+
+  me.resize = function(newWidth, newHeight) {
+
+    function resizeDelayed() {
+      resizePending = false;
+
+      if (
+        (resizeNewWidth !== resizeLastWidth) ||
+        (!me.fixedHeight() && resizeNewHeight !== resizeLastHeight)
+      ) {
+        resizeLastWidth = resizeNewWidth;
+        resizeLastHeight = resizeNewHeight;
+
+        setTimeout(resizeDelayed, 200);
+        resizePending = true;
+      } else {
+        me.render();
+        triggerOnChange();
+
+        resizeLastWidth = -1;
+        resizeLastHeight = -1;
+      }
+    }
+
+    resizeNewWidth = newWidth;
+    resizeNewHeight = newHeight;
+
+    if (!resizePending) resizeDelayed();
+  };
+};
+
+var PagedTableDoc;
+(function (PagedTableDoc) {
+  var allPagedTables = [];
+
+  PagedTableDoc.initAll = function() {
+    allPagedTables = [];
+
+    var pagedTables = [].slice.call(document.querySelectorAll('[data-pagedtable="false"],[data-pagedtable=""]'));
+    pagedTables.forEach(function(pagedTable, idx) {
+      pagedTable.setAttribute("data-pagedtable", "true");
+      pagedTable.setAttribute("pagedtable-page", 0);
+      pagedTable.setAttribute("class", "pagedtable-wrapper");
+
+      var pagedTableInstance = new PagedTable(pagedTable);
+      pagedTableInstance.init();
+
+      allPagedTables.push(pagedTableInstance);
+    });
+  };
+
+  PagedTableDoc.resizeAll = function() {
+    allPagedTables.forEach(function(pagedTable) {
+      pagedTable.render();
+    });
+  };
+
+  window.addEventListener("resize", PagedTableDoc.resizeAll);
+
+  return PagedTableDoc;
+})(PagedTableDoc || (PagedTableDoc = {}));
+
+window.onload = function() {
+  PagedTableDoc.initAll();
+};
+</script>
         <script>(function() {
   // If window.HTMLWidgets is already defined, then use it; otherwise create a
   // new object. This allows preceding code to set options that affect the
@@ -6055,93 +7326,10 @@ dataset</a> was used.</p>
 
 countries &lt;- read_csv(&quot;countries.csv&quot;)
 head(countries)</code></pre>
-<div class="kable-table">
-<table>
-<colgroup>
-<col width="10%" />
-<col width="7%" />
-<col width="9%" />
-<col width="17%" />
-<col width="12%" />
-<col width="15%" />
-<col width="16%" />
-<col width="9%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">country_code</th>
-<th align="right">latitude</th>
-<th align="right">longitude</th>
-<th align="left">country</th>
-<th align="left">usa_state_code</th>
-<th align="right">usa_state_latitude</th>
-<th align="right">usa_state_longitude</th>
-<th align="left">usa_state</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">AD</td>
-<td align="right">42.54624</td>
-<td align="right">1.601554</td>
-<td align="left">Andorra</td>
-<td align="left">AK</td>
-<td align="right">63.58875</td>
-<td align="right">-154.49306</td>
-<td align="left">Alaska</td>
-</tr>
-<tr class="even">
-<td align="left">AE</td>
-<td align="right">23.42408</td>
-<td align="right">53.847818</td>
-<td align="left">United Arab Emirates</td>
-<td align="left">AL</td>
-<td align="right">32.31823</td>
-<td align="right">-86.90230</td>
-<td align="left">Alabama</td>
-</tr>
-<tr class="odd">
-<td align="left">AF</td>
-<td align="right">33.93911</td>
-<td align="right">67.709953</td>
-<td align="left">Afghanistan</td>
-<td align="left">AR</td>
-<td align="right">35.20105</td>
-<td align="right">-91.83183</td>
-<td align="left">Arkansas</td>
-</tr>
-<tr class="even">
-<td align="left">AG</td>
-<td align="right">17.06082</td>
-<td align="right">-61.796428</td>
-<td align="left">Antigua and Barbuda</td>
-<td align="left">AZ</td>
-<td align="right">34.04893</td>
-<td align="right">-111.09373</td>
-<td align="left">Arizona</td>
-</tr>
-<tr class="odd">
-<td align="left">AI</td>
-<td align="right">18.22055</td>
-<td align="right">-63.068615</td>
-<td align="left">Anguilla</td>
-<td align="left">CA</td>
-<td align="right">36.77826</td>
-<td align="right">-119.41793</td>
-<td align="left">California</td>
-</tr>
-<tr class="even">
-<td align="left">AL</td>
-<td align="right">41.15333</td>
-<td align="right">20.168331</td>
-<td align="left">Albania</td>
-<td align="left">CO</td>
-<td align="right">39.55005</td>
-<td align="right">-105.78207</td>
-<td align="left">Colorado</td>
-</tr>
-</tbody>
-</table>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["latitude"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["longitude"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["usa_state_code"],"name":[5],"type":["chr"],"align":["left"]},{"label":["usa_state_latitude"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["usa_state_longitude"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["usa_state"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"AD","2":"42.54624","3":"1.601554","4":"Andorra","5":"AK","6":"63.58875","7":"-154.49306","8":"Alaska"},{"1":"AE","2":"23.42408","3":"53.847818","4":"United Arab Emirates","5":"AL","6":"32.31823","7":"-86.90230","8":"Alabama"},{"1":"AF","2":"33.93911","3":"67.709953","4":"Afghanistan","5":"AR","6":"35.20105","7":"-91.83183","8":"Arkansas"},{"1":"AG","2":"17.06082","3":"-61.796428","4":"Antigua and Barbuda","5":"AZ","6":"34.04893","7":"-111.09373","8":"Arizona"},{"1":"AI","2":"18.22055","3":"-63.068615","4":"Anguilla","5":"CA","6":"36.77826","7":"-119.41793","8":"California"},{"1":"AL","2":"41.15333","3":"20.168331","4":"Albania","5":"CO","6":"39.55005","7":"-105.78207","8":"Colorado"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 <div id="wrangling" class="section level2">
@@ -6156,101 +7344,10 @@ with the same letter.</p>
         select(-(first:last)) %&gt;%
         rename(lat  = latitude,
                lng = longitude)</code></pre>
-<div class="kable-table">
-<table>
-<colgroup>
-<col width="11%" />
-<col width="8%" />
-<col width="7%" />
-<col width="11%" />
-<col width="13%" />
-<col width="16%" />
-<col width="17%" />
-<col width="8%" />
-<col width="5%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">country_code</th>
-<th align="right">lat</th>
-<th align="right">lng</th>
-<th align="left">country</th>
-<th align="left">usa_state_code</th>
-<th align="right">usa_state_latitude</th>
-<th align="right">usa_state_longitude</th>
-<th align="left">usa_state</th>
-<th align="left">same</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">XK</td>
-<td align="right">42.60264</td>
-<td align="right">20.90298</td>
-<td align="left">Kosovo</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">YE</td>
-<td align="right">15.55273</td>
-<td align="right">48.51639</td>
-<td align="left">Yemen</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">YT</td>
-<td align="right">-12.82750</td>
-<td align="right">45.16624</td>
-<td align="left">Mayotte</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">ZA</td>
-<td align="right">-30.55948</td>
-<td align="right">22.93751</td>
-<td align="left">South Africa</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">ZM</td>
-<td align="right">-13.13390</td>
-<td align="right">27.84933</td>
-<td align="left">Zambia</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">ZW</td>
-<td align="right">-19.01544</td>
-<td align="right">29.15486</td>
-<td align="left">Zimbabwe</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">FALSE</td>
-</tr>
-</tbody>
-</table>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["lat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lng"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["usa_state_code"],"name":[5],"type":["chr"],"align":["left"]},{"label":["usa_state_latitude"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["usa_state_longitude"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["usa_state"],"name":[8],"type":["chr"],"align":["left"]},{"label":["same"],"name":[9],"type":["lgl"],"align":["right"]}],"data":[{"1":"XK","2":"42.60264","3":"20.90298","4":"Kosovo","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"},{"1":"YE","2":"15.55273","3":"48.51639","4":"Yemen","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"},{"1":"YT","2":"-12.82750","3":"45.16624","4":"Mayotte","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"},{"1":"ZA","2":"-30.55948","3":"22.93751","4":"South Africa","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"},{"1":"ZM","2":"-13.13390","3":"27.84933","4":"Zambia","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"},{"1":"ZW","2":"-19.01544","3":"29.15486","4":"Zimbabwe","5":"NA","6":"NA","7":"NA","8":"NA","9":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 <p>The code below shows how a color palette and map were generated.</p>
 <pre class="r"><code>library(leaflet)
@@ -6268,8 +7365,8 @@ my_map &lt;-
                   values = ~same,
                   title = &quot;Does the country name begin and start with the same letter?&quot;)</code></pre>
 <p>Here is the interactive map.</p>
-<div id="htmlwidget-3c9d7b7407228b54868f" style="width:768px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3c9d7b7407228b54868f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[42.546245,23.424076,33.93911,17.060816,18.220554,41.153332,40.069099,12.226079,-11.202692,-75.250973,-38.416097,-14.270972,47.516231,-25.274398,12.52111,40.143105,43.915886,13.193887,23.684994,50.503887,12.238333,42.733883,25.930414,-3.373056,9.30769,32.321384,4.535277,-16.290154,-14.235004,25.03428,27.514162,-54.423199,-22.328474,53.709807,17.189877,56.130366,-12.164165,-4.038333,6.611111,-0.228021,46.818188,7.539989,-21.236736,-35.675147,7.369722,35.86166,4.570868,9.748917,21.521757,16.002082,-10.447525,35.126413,49.817492,51.165691,11.825138,56.26392,15.414999,18.735693,28.033886,-1.831239,58.595272,26.820553,24.215527,15.179384,40.463667,9.145,61.92411,-16.578193,-51.796253,7.425554,61.892635,46.227638,-0.803689,55.378051,12.262776,42.315407,3.933889,49.465691,7.946527,36.137741,71.706936,13.443182,9.945587,16.995971,1.650801,39.074208,-54.429579,15.783471,13.444304,11.803749,4.860416,31.354676,22.396428,-53.08181,15.199999,45.1,18.971187,47.162494,-0.789275,53.41291,31.046051,54.236107,20.593684,-6.343194,33.223191,32.427908,64.963051,41.87194,49.214439,18.109581,30.585164,36.204824,-0.023559,41.20438,12.565679,-3.370417,-11.875001,17.357822,40.339852,35.907757,29.31166,19.513469,48.019573,19.85627,33.854721,13.909444,47.166,7.873054,6.428055,-29.609988,55.169438,49.815273,56.879635,26.3351,31.791702,43.750298,47.411631,42.708678,-18.766947,7.131474,41.608635,17.570692,21.913965,46.862496,22.198745,17.33083,14.641528,21.00789,16.742498,35.937496,-20.348404,3.202778,-13.254308,23.634501,4.210484,-18.665695,-22.95764,-20.904305,17.607789,-29.040835,9.081999,12.865416,52.132633,60.472024,28.394857,-0.522778,-19.054445,-40.900557,21.512583,8.537981,-9.189967,-17.679742,-6.314993,12.879721,30.375321,51.919438,46.941936,-24.703615,18.220833,31.952162,39.399872,7.51498,-23.442503,25.354826,-21.115141,45.943161,44.016521,61.52401,-1.940278,23.885942,-9.64571,-4.679574,12.862807,60.128161,1.352083,-24.143474,46.151241,77.553604,48.669026,8.460555,43.94236,14.497401,5.152149,3.919305,0.18636,13.794185,34.802075,-26.522503,21.694025,15.454166,-49.280366,8.619543,15.870032,38.861034,-8.967363,-8.874217,38.969719,33.886917,-21.178986,38.963745,10.691803,-7.109535,23.69781,-6.369028,48.379433,1.373333,null,37.09024,-32.522779,41.377491,41.902916,12.984305,6.42375,18.420695,18.335765,14.058324,-15.376706,-13.768752,-13.759029,42.602636,15.552727,-12.8275,-30.559482,-13.133897,-19.015438],[1.601554,53.847818,67.709953,-61.796428,-63.068615,20.168331,45.038189,-69.060087,17.873887,-0.071389,-63.616672,-170.132217,14.550072,133.775136,-69.968338,47.576927,17.679076,-59.543198,90.356331,4.469936,-1.561593,25.48583,50.637772,29.918886,2.315834,-64.75737,114.727669,-63.588653,-51.92528,-77.39628,90.433601,3.413194,24.684866,27.953389,-88.49765,-106.346771,96.870956,21.758664,20.939444,15.827659,8.227512,-5.54708,-159.777671,-71.542969,12.354722,104.195397,-74.297333,-83.753428,-77.781167,-24.013197,105.690449,33.429859,15.472962,10.451526,42.590275,9.501785,-61.370976,-70.162651,1.659626,-78.183406,25.013607,30.802498,-12.885834,39.782334,-3.74922,40.489673,25.748151,179.414413,-59.523613,150.550812,-6.911806,2.213749,11.609444,-3.435973,-61.604171,43.356892,-53.125782,-2.585278,-1.023194,-5.345374,-42.604303,-15.310139,-9.696645,-62.067641,10.267895,21.824312,-36.587909,-90.230759,144.793731,-15.180413,-58.93018,34.308825,114.109497,73.504158,-86.241905,15.2,-72.285215,19.503304,113.921327,-8.24389,34.851612,-4.548056,78.96288,71.876519,43.679291,53.688046,-19.020835,12.56738,-2.13125,-77.297508,36.238414,138.252924,37.906193,74.766098,104.990963,-168.734039,43.872219,-62.782998,127.510093,127.766922,47.481766,-80.566956,66.923684,102.495496,35.862285,-60.978893,9.555373,80.771797,-9.429499,28.233608,23.881275,6.129583,24.603189,17.228331,-7.09262,7.412841,28.369885,19.37439,46.869107,171.184478,21.745275,-3.996166,95.956223,103.846656,113.543873,145.38469,-61.024174,-10.940835,-62.187366,14.375416,57.552152,73.22068,34.301525,-102.552784,101.975766,35.529562,18.49041,165.618042,8.081666,167.954712,8.675277,-85.207229,5.291266,8.468946,84.124008,166.931503,-169.867233,174.885971,55.923255,-80.782127,-75.015152,-149.406843,143.95555,121.774017,69.345116,19.145136,-56.27111,-127.439308,-66.590149,35.233154,-8.224454,134.58252,-58.443832,51.183884,55.536384,24.96676,21.005859,105.318756,29.873888,45.079162,160.156194,55.491977,30.217636,18.643501,103.819836,-10.030696,14.995463,23.670272,19.699024,-11.779889,12.457777,-14.452362,46.199616,-56.027783,6.613081,-88.89653,38.996815,31.465866,-71.797928,18.732207,69.348557,0.824782,100.992541,71.276093,-171.855881,125.727539,59.556278,9.537499,-175.198242,35.243322,-61.222503,177.64933,120.960515,34.888822,31.16558,32.290275,null,-95.712891,-55.765835,64.585262,12.453389,-61.287228,-66.58973,-64.639968,-64.896335,108.277199,166.959158,-177.156097,-172.104629,20.902977,48.516388,45.166244,22.937506,27.849332,29.154857],10,null,null,{"interactive":true,"className":"","stroke":true,"color":["#91CF60","#FC8D59","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59"],"weight":5,"opacity":0.8,"fill":true,"fillColor":["#91CF60","#FC8D59","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59"],"fillOpacity":0.2},null,null,["Andorra","United Arab Emirates","Afghanistan","Antigua and Barbuda","Anguilla","Albania","Armenia","Netherlands Antilles","Angola","Antarctica","Argentina","American Samoa","Austria","Australia","Aruba","Azerbaijan","Bosnia and Herzegovina","Barbados","Bangladesh","Belgium","Burkina Faso","Bulgaria","Bahrain","Burundi","Benin","Bermuda","Brunei","Bolivia","Brazil","Bahamas","Bhutan","Bouvet Island","Botswana","Belarus","Belize","Canada","Cocos [Keeling] Islands","Congo [DRC]","Central African Republic","Congo [Republic]","Switzerland","Côte d'Ivoire","Cook Islands","Chile","Cameroon","China","Colombia","Costa Rica","Cuba","Cape Verde","Christmas Island","Cyprus","Czech Republic","Germany","Djibouti","Denmark","Dominica","Dominican Republic","Algeria","Ecuador","Estonia","Egypt","Western Sahara","Eritrea","Spain","Ethiopia","Finland","Fiji","Falkland Islands [Islas Malvinas]","Micronesia","Faroe Islands","France","Gabon","United Kingdom","Grenada","Georgia","French Guiana","Guernsey","Ghana","Gibraltar","Greenland","Gambia","Guinea","Guadeloupe","Equatorial Guinea","Greece","South Georgia and the South Sandwich Islands","Guatemala","Guam","Guinea-Bissau","Guyana","Gaza Strip","Hong Kong","Heard Island and McDonald Islands","Honduras","Croatia","Haiti","Hungary","Indonesia","Ireland","Israel","Isle of Man","India","British Indian Ocean Territory","Iraq","Iran","Iceland","Italy","Jersey","Jamaica","Jordan","Japan","Kenya","Kyrgyzstan","Cambodia","Kiribati","Comoros","Saint Kitts and Nevis","North Korea","South Korea","Kuwait","Cayman Islands","Kazakhstan","Laos","Lebanon","Saint Lucia","Liechtenstein","Sri Lanka","Liberia","Lesotho","Lithuania","Luxembourg","Latvia","Libya","Morocco","Monaco","Moldova","Montenegro","Madagascar","Marshall Islands","Macedonia [FYROM]","Mali","Myanmar [Burma]","Mongolia","Macau","Northern Mariana Islands","Martinique","Mauritania","Montserrat","Malta","Mauritius","Maldives","Malawi","Mexico","Malaysia","Mozambique","Namibia","New Caledonia","Niger","Norfolk Island","Nigeria","Nicaragua","Netherlands","Norway","Nepal","Nauru","Niue","New Zealand","Oman","Panama","Peru","French Polynesia","Papua New Guinea","Philippines","Pakistan","Poland","Saint Pierre and Miquelon","Pitcairn Islands","Puerto Rico","Palestinian Territories","Portugal","Palau","Paraguay","Qatar","Réunion","Romania","Serbia","Russia","Rwanda","Saudi Arabia","Solomon Islands","Seychelles","Sudan","Sweden","Singapore","Saint Helena","Slovenia","Svalbard and Jan Mayen","Slovakia","Sierra Leone","San Marino","Senegal","Somalia","Suriname","São Tomé and Príncipe","El Salvador","Syria","Swaziland","Turks and Caicos Islands","Chad","French Southern Territories","Togo","Thailand","Tajikistan","Tokelau","Timor-Leste","Turkmenistan","Tunisia","Tonga","Turkey","Trinidad and Tobago","Tuvalu","Taiwan","Tanzania","Ukraine","Uganda","U.S. Minor Outlying Islands","United States","Uruguay","Uzbekistan","Vatican City","Saint Vincent and the Grenadines","Venezuela","British Virgin Islands","U.S. Virgin Islands","Vietnam","Vanuatu","Wallis and Futuna","Samoa","Kosovo","Yemen","Mayotte","South Africa","Zambia","Zimbabwe"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FC8D59","#91CF60"],"labels":["FALSE","TRUE"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"factor","title":"Does the country name begin and start with the same letter?","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-75.250973,77.553604],"lng":[-177.156097,179.414413]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d544266e8f6fa1157a32" style="width:768px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d544266e8f6fa1157a32">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[42.546245,23.424076,33.93911,17.060816,18.220554,41.153332,40.069099,12.226079,-11.202692,-75.250973,-38.416097,-14.270972,47.516231,-25.274398,12.52111,40.143105,43.915886,13.193887,23.684994,50.503887,12.238333,42.733883,25.930414,-3.373056,9.30769,32.321384,4.535277,-16.290154,-14.235004,25.03428,27.514162,-54.423199,-22.328474,53.709807,17.189877,56.130366,-12.164165,-4.038333,6.611111,-0.228021,46.818188,7.539989,-21.236736,-35.675147,7.369722,35.86166,4.570868,9.748917,21.521757,16.002082,-10.447525,35.126413,49.817492,51.165691,11.825138,56.26392,15.414999,18.735693,28.033886,-1.831239,58.595272,26.820553,24.215527,15.179384,40.463667,9.145,61.92411,-16.578193,-51.796253,7.425554,61.892635,46.227638,-0.803689,55.378051,12.262776,42.315407,3.933889,49.465691,7.946527,36.137741,71.706936,13.443182,9.945587,16.995971,1.650801,39.074208,-54.429579,15.783471,13.444304,11.803749,4.860416,31.354676,22.396428,-53.08181,15.199999,45.1,18.971187,47.162494,-0.789275,53.41291,31.046051,54.236107,20.593684,-6.343194,33.223191,32.427908,64.963051,41.87194,49.214439,18.109581,30.585164,36.204824,-0.023559,41.20438,12.565679,-3.370417,-11.875001,17.357822,40.339852,35.907757,29.31166,19.513469,48.019573,19.85627,33.854721,13.909444,47.166,7.873054,6.428055,-29.609988,55.169438,49.815273,56.879635,26.3351,31.791702,43.750298,47.411631,42.708678,-18.766947,7.131474,41.608635,17.570692,21.913965,46.862496,22.198745,17.33083,14.641528,21.00789,16.742498,35.937496,-20.348404,3.202778,-13.254308,23.634501,4.210484,-18.665695,-22.95764,-20.904305,17.607789,-29.040835,9.081999,12.865416,52.132633,60.472024,28.394857,-0.522778,-19.054445,-40.900557,21.512583,8.537981,-9.189967,-17.679742,-6.314993,12.879721,30.375321,51.919438,46.941936,-24.703615,18.220833,31.952162,39.399872,7.51498,-23.442503,25.354826,-21.115141,45.943161,44.016521,61.52401,-1.940278,23.885942,-9.64571,-4.679574,12.862807,60.128161,1.352083,-24.143474,46.151241,77.553604,48.669026,8.460555,43.94236,14.497401,5.152149,3.919305,0.18636,13.794185,34.802075,-26.522503,21.694025,15.454166,-49.280366,8.619543,15.870032,38.861034,-8.967363,-8.874217,38.969719,33.886917,-21.178986,38.963745,10.691803,-7.109535,23.69781,-6.369028,48.379433,1.373333,null,37.09024,-32.522779,41.377491,41.902916,12.984305,6.42375,18.420695,18.335765,14.058324,-15.376706,-13.768752,-13.759029,42.602636,15.552727,-12.8275,-30.559482,-13.133897,-19.015438],[1.601554,53.847818,67.709953,-61.796428,-63.068615,20.168331,45.038189,-69.060087,17.873887,-0.071389,-63.616672,-170.132217,14.550072,133.775136,-69.968338,47.576927,17.679076,-59.543198,90.356331,4.469936,-1.561593,25.48583,50.637772,29.918886,2.315834,-64.75737,114.727669,-63.588653,-51.92528,-77.39628,90.433601,3.413194,24.684866,27.953389,-88.49765,-106.346771,96.870956,21.758664,20.939444,15.827659,8.227512,-5.54708,-159.777671,-71.542969,12.354722,104.195397,-74.297333,-83.753428,-77.781167,-24.013197,105.690449,33.429859,15.472962,10.451526,42.590275,9.501785,-61.370976,-70.162651,1.659626,-78.183406,25.013607,30.802498,-12.885834,39.782334,-3.74922,40.489673,25.748151,179.414413,-59.523613,150.550812,-6.911806,2.213749,11.609444,-3.435973,-61.604171,43.356892,-53.125782,-2.585278,-1.023194,-5.345374,-42.604303,-15.310139,-9.696645,-62.067641,10.267895,21.824312,-36.587909,-90.230759,144.793731,-15.180413,-58.93018,34.308825,114.109497,73.504158,-86.241905,15.2,-72.285215,19.503304,113.921327,-8.24389,34.851612,-4.548056,78.96288,71.876519,43.679291,53.688046,-19.020835,12.56738,-2.13125,-77.297508,36.238414,138.252924,37.906193,74.766098,104.990963,-168.734039,43.872219,-62.782998,127.510093,127.766922,47.481766,-80.566956,66.923684,102.495496,35.862285,-60.978893,9.555373,80.771797,-9.429499,28.233608,23.881275,6.129583,24.603189,17.228331,-7.09262,7.412841,28.369885,19.37439,46.869107,171.184478,21.745275,-3.996166,95.956223,103.846656,113.543873,145.38469,-61.024174,-10.940835,-62.187366,14.375416,57.552152,73.22068,34.301525,-102.552784,101.975766,35.529562,18.49041,165.618042,8.081666,167.954712,8.675277,-85.207229,5.291266,8.468946,84.124008,166.931503,-169.867233,174.885971,55.923255,-80.782127,-75.015152,-149.406843,143.95555,121.774017,69.345116,19.145136,-56.27111,-127.439308,-66.590149,35.233154,-8.224454,134.58252,-58.443832,51.183884,55.536384,24.96676,21.005859,105.318756,29.873888,45.079162,160.156194,55.491977,30.217636,18.643501,103.819836,-10.030696,14.995463,23.670272,19.699024,-11.779889,12.457777,-14.452362,46.199616,-56.027783,6.613081,-88.89653,38.996815,31.465866,-71.797928,18.732207,69.348557,0.824782,100.992541,71.276093,-171.855881,125.727539,59.556278,9.537499,-175.198242,35.243322,-61.222503,177.64933,120.960515,34.888822,31.16558,32.290275,null,-95.712891,-55.765835,64.585262,12.453389,-61.287228,-66.58973,-64.639968,-64.896335,108.277199,166.959158,-177.156097,-172.104629,20.902977,48.516388,45.166244,22.937506,27.849332,29.154857],10,null,null,{"interactive":true,"className":"","stroke":true,"color":["#91CF60","#FC8D59","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59"],"weight":5,"opacity":0.8,"fill":true,"fillColor":["#91CF60","#FC8D59","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#91CF60","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59","#FC8D59"],"fillOpacity":0.2},null,null,["Andorra","United Arab Emirates","Afghanistan","Antigua and Barbuda","Anguilla","Albania","Armenia","Netherlands Antilles","Angola","Antarctica","Argentina","American Samoa","Austria","Australia","Aruba","Azerbaijan","Bosnia and Herzegovina","Barbados","Bangladesh","Belgium","Burkina Faso","Bulgaria","Bahrain","Burundi","Benin","Bermuda","Brunei","Bolivia","Brazil","Bahamas","Bhutan","Bouvet Island","Botswana","Belarus","Belize","Canada","Cocos [Keeling] Islands","Congo [DRC]","Central African Republic","Congo [Republic]","Switzerland","Côte d'Ivoire","Cook Islands","Chile","Cameroon","China","Colombia","Costa Rica","Cuba","Cape Verde","Christmas Island","Cyprus","Czech Republic","Germany","Djibouti","Denmark","Dominica","Dominican Republic","Algeria","Ecuador","Estonia","Egypt","Western Sahara","Eritrea","Spain","Ethiopia","Finland","Fiji","Falkland Islands [Islas Malvinas]","Micronesia","Faroe Islands","France","Gabon","United Kingdom","Grenada","Georgia","French Guiana","Guernsey","Ghana","Gibraltar","Greenland","Gambia","Guinea","Guadeloupe","Equatorial Guinea","Greece","South Georgia and the South Sandwich Islands","Guatemala","Guam","Guinea-Bissau","Guyana","Gaza Strip","Hong Kong","Heard Island and McDonald Islands","Honduras","Croatia","Haiti","Hungary","Indonesia","Ireland","Israel","Isle of Man","India","British Indian Ocean Territory","Iraq","Iran","Iceland","Italy","Jersey","Jamaica","Jordan","Japan","Kenya","Kyrgyzstan","Cambodia","Kiribati","Comoros","Saint Kitts and Nevis","North Korea","South Korea","Kuwait","Cayman Islands","Kazakhstan","Laos","Lebanon","Saint Lucia","Liechtenstein","Sri Lanka","Liberia","Lesotho","Lithuania","Luxembourg","Latvia","Libya","Morocco","Monaco","Moldova","Montenegro","Madagascar","Marshall Islands","Macedonia [FYROM]","Mali","Myanmar [Burma]","Mongolia","Macau","Northern Mariana Islands","Martinique","Mauritania","Montserrat","Malta","Mauritius","Maldives","Malawi","Mexico","Malaysia","Mozambique","Namibia","New Caledonia","Niger","Norfolk Island","Nigeria","Nicaragua","Netherlands","Norway","Nepal","Nauru","Niue","New Zealand","Oman","Panama","Peru","French Polynesia","Papua New Guinea","Philippines","Pakistan","Poland","Saint Pierre and Miquelon","Pitcairn Islands","Puerto Rico","Palestinian Territories","Portugal","Palau","Paraguay","Qatar","Réunion","Romania","Serbia","Russia","Rwanda","Saudi Arabia","Solomon Islands","Seychelles","Sudan","Sweden","Singapore","Saint Helena","Slovenia","Svalbard and Jan Mayen","Slovakia","Sierra Leone","San Marino","Senegal","Somalia","Suriname","São Tomé and Príncipe","El Salvador","Syria","Swaziland","Turks and Caicos Islands","Chad","French Southern Territories","Togo","Thailand","Tajikistan","Tokelau","Timor-Leste","Turkmenistan","Tunisia","Tonga","Turkey","Trinidad and Tobago","Tuvalu","Taiwan","Tanzania","Ukraine","Uganda","U.S. Minor Outlying Islands","United States","Uruguay","Uzbekistan","Vatican City","Saint Vincent and the Grenadines","Venezuela","British Virgin Islands","U.S. Virgin Islands","Vietnam","Vanuatu","Wallis and Futuna","Samoa","Kosovo","Yemen","Mayotte","South Africa","Zambia","Zimbabwe"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FC8D59","#91CF60"],"labels":["FALSE","TRUE"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"factor","title":"Does the country name begin and start with the same letter?","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-75.250973,77.553604],"lng":[-177.156097,179.414413]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
